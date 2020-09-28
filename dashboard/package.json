@@ -1,0 +1,53 @@
+{
+  "name": "dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@harmony-js/core": "^0.1.54",
+    "@harmony-js/crypto": "^0.1.54",
+    "@harmony-js/utils": "^0.1.54",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "clipboardy": "^2.3.0",
+    "ethers": "^5.0.13",
+    "mobx": "^5.15.6",
+    "mobx-react": "^6.3.0",
+    "moment": "^2.27.0",
+    "qrcode.react": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-native-elements": "^2.0.0",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-web": "^0.11.7",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "toastify-js": "^1.9.1"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "customize-cra": "^0.9.1",
+    "react-app-rewired": "^2.1.6"
+  }
+}
