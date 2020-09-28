@@ -14,9 +14,21 @@ const ethers = require('ethers');
 
 const utils = ethers.utils;
 const BigNumber = ethers.BigNumber;
-const BASE_TOKEN_ADDRESS = '0x9Dc61910a27f69895A20DFB31a5F919fd11625A5';
 const OPTS = { gasPrice: utils.parseUnits('10', 'gwei').toString(), gasLimit: '1000000' };
-const URL_EXPLORER = 'https://explorer.pops.one/#/tx/';
+
+// testnet
+// const BASE_TOKEN_ADDRESS = '0x9Dc61910a27f69895A20DFB31a5F919fd11625A5';
+// const HARMONY_URL = 'https://api.s0.b.hmny.io';
+// const HARMONY_CHAINTYPE = ChainType.Harmony;
+// const HARMONY_CHAINID = ChainID.HmyTestnet;
+// const URL_EXPLORER = 'https://explorer.pops.one/#/tx/';
+
+// mainnet
+const BASE_TOKEN_ADDRESS = '0x8402C5162a706c4b30377660fDa9C1DC93Fec677';
+const HARMONY_URL = 'https://api.s0.t.hmny.io';
+const HARMONY_CHAINTYPE = ChainType.Harmony;
+const HARMONY_CHAINID = ChainID.HmyMainnet;
+const URL_EXPLORER = 'https://explorer.harmony.one/#/tx/';
 
 class TheManager {
 
@@ -40,10 +52,11 @@ class TheManager {
   voucherList = [];
 
   constructor() {
-    this.hmy = new Harmony("https://api.s0.b.hmny.io", {
-      chainType: ChainType.Harmony,
-      chainId: ChainID.HmyTestnet,
-    });
+    const opt = {
+      chainType: HARMONY_CHAINTYPE,
+      chainId: HARMONY_CHAINID,
+    };
+    this.hmy = new Harmony(HARMONY_URL, opt);
   }
 
   async init() {
@@ -54,11 +67,11 @@ class TheManager {
     const btContract = hmy.contracts.createContract(btJson.abi, btAddress);
 
     const vtJson = require("./json/VoucherToken.json");
-    const vtAddress = vtJson.networks[ChainID.HmyTestnet].address;
+    const vtAddress = vtJson.networks[HARMONY_CHAINID].address;
     const vtContract = hmy.contracts.createContract(vtJson.abi, vtAddress);
 
     const kpJson = require("./json/KOHPool.json");
-    const kpAddress = kpJson.networks[ChainID.HmyTestnet].address;
+    const kpAddress = kpJson.networks[HARMONY_CHAINID].address;
     const kpContract = hmy.contracts.createContract(kpJson.abi, kpAddress);
 
     return { vtContract, vtAddress, btContract, kpContract, kpAddress };
@@ -79,6 +92,7 @@ class TheManager {
     const addressOne = getAddress(account.address).bech32;
     const pk = account.privateKey;
     const etherWallet = new ethers.Wallet(pk);
+
     const { vtContract, vtAddress, btContract, kpContract, kpAddress } = await this.init();
     const address = etherWallet.address;
 
